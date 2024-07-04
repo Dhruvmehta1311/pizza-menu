@@ -112,17 +112,25 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 20;
   const closedHour = 22;
   const isOpen = hour > openHour && hour <= closedHour;
-  console.log(hour);
+  // console.log(hour);
+  console.log(isOpen);
 
   // if (hour > openHour && hour <= closedHour) alert("We're Currently Open!");
   // else alert("We're currently closed!");
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're Currently Open.
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're Open until {closedHour}:00, Come visit us or order online.
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
   // return React.createElement("footer", null, "We're Currently Open");
