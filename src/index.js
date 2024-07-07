@@ -29,7 +29,7 @@ const pizzaData = [
     ingredients: "Tomato, mozarella, mushrooms, and onion",
     price: 12,
     photoName: "pizzas/funghi.jpg",
-    soldOut: false,
+    soldOut: true,
   },
   {
     name: "Pizza Salamino",
@@ -113,14 +113,23 @@ function Menu() {
 function Pizza({ pizzaObj }) {
   console.log(pizzaObj);
 
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div className="">
         <h3>{pizzaObj.name}</h3>
         <h3>{pizzaObj.ingredients}</h3>
-        <span>{pizzaObj.price + 3} </span>
+
+        {/* Approach 1 */}
+        {/* {pizzaObj.soldOut ? (
+          <span>Sold Out</span>
+        ) : (
+          <span>{pizzaObj.soldOut}</span>
+        )} */}
+
+        {/* Approach 2 */}
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
